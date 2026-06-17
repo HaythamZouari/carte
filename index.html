@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte EnR Tunisie - Ressources & Projets Énergies Renouvelables</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h1>🇹🇳 Carte EnR Tunisie</h1>
+            <p class="subtitle">Ressources & Projets d'Énergies Renouvelables</p>
+        </div>
+
+        <div class="sidebar-section">
+            <h2>Couches de ressources</h2>
+            <div class="layer-group">
+                <label class="layer-toggle">
+                    <input type="checkbox" id="layer-solar" checked>
+                    <span class="toggle-icon solar"></span>
+                    Irradiation solaire (GHI)
+                </label>
+                <label class="layer-toggle">
+                    <input type="checkbox" id="layer-wind" checked>
+                    <span class="toggle-icon wind"></span>
+                    Potentiel éolien
+                </label>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h2>Projets EnR</h2>
+            <div class="layer-group">
+                <label class="layer-toggle">
+                    <input type="checkbox" id="layer-solar-projects" checked>
+                    <span class="toggle-icon solar-project"></span>
+                    Centrales solaires PV
+                </label>
+                <label class="layer-toggle">
+                    <input type="checkbox" id="layer-wind-projects" checked>
+                    <span class="toggle-icon wind-project"></span>
+                    Parcs éoliens
+                </label>
+                <label class="layer-toggle">
+                    <input type="checkbox" id="layer-csp-projects" checked>
+                    <span class="toggle-icon csp-project"></span>
+                    Centrales CSP
+                </label>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h2>Fond de carte</h2>
+            <div class="layer-group">
+                <label class="layer-toggle">
+                    <input type="radio" name="basemap" value="osm" checked>
+                    OpenStreetMap
+                </label>
+                <label class="layer-toggle">
+                    <input type="radio" name="basemap" value="satellite">
+                    Satellite (Esri)
+                </label>
+                <label class="layer-toggle">
+                    <input type="radio" name="basemap" value="topo">
+                    Topographique
+                </label>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h2>Statistiques</h2>
+            <div id="stats" class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-total">0</span>
+                    <span class="stat-label">Projets totaux</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-capacity">0</span>
+                    <span class="stat-label">MW installés</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-solar">0</span>
+                    <span class="stat-label">Solaire (MW)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-wind">0</span>
+                    <span class="stat-label">Éolien (MW)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-section legend-section">
+            <h2>Légende</h2>
+            <div id="legend-solar" class="legend-block">
+                <h3>Irradiation solaire (kWh/m²/an)</h3>
+                <div class="legend-gradient">
+                    <div class="gradient-bar solar-gradient"></div>
+                    <div class="gradient-labels">
+                        <span>1600</span>
+                        <span>1800</span>
+                        <span>2000</span>
+                        <span>2200+</span>
+                    </div>
+                </div>
+            </div>
+            <div id="legend-wind" class="legend-block">
+                <h3>Vitesse du vent (m/s à 100m)</h3>
+                <div class="legend-gradient">
+                    <div class="gradient-bar wind-gradient"></div>
+                    <div class="gradient-labels">
+                        <span>3</span>
+                        <span>5</span>
+                        <span>7</span>
+                        <span>9+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <button id="sidebar-toggle" title="Afficher/Masquer le panneau">☰</button>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet-heat@0.2.0/dist/leaflet-heat.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
