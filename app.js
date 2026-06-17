@@ -1,12 +1,19 @@
 // ============================================================
 // Initialisation de la carte
 // ============================================================
+const tunisiaBounds = L.latLngBounds(
+    L.latLng(30.2, 7.0),
+    L.latLng(37.6, 12.0)
+);
+
 const map = L.map('map', {
     center: [34.5, 9.5],
     zoom: 7,
     minZoom: 6,
     maxZoom: 18,
-    zoomControl: true
+    zoomControl: true,
+    maxBounds: tunisiaBounds,
+    maxBoundsViscosity: 1.0
 });
 
 // ============================================================
